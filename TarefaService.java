@@ -48,7 +48,6 @@ public class TarefaService {
         return tarefaRepository.save(antiga);
     }
 
-    //Exclusao formato json que precise colocar isso localhost:8080/api/tarefa/id e no json so id
     public void excluir(Tarefa tarefa){
         var antiga = tarefaRepository.findById(tarefa.getId()).orElse(null);
         if (antiga == null){
@@ -59,18 +58,6 @@ public class TarefaService {
         }
         tarefaRepository.delete(antiga);
     }
-
-    // Exclusao formato localhost:8080/api/tarefa/id so colocar isso no postman que deleta
-      /*public void excluir(Long id) {
-        Tarefa antiga = tarefaRepository.findById(id).orElse(null);
-        if (antiga == null) {
-            throw new RuntimeException("Tarefa não encontrada");
-        }
-        if (antiga.isFinalizado()) {
-            throw new RuntimeException("Tarefa finalizada, não pode ser excluída");
-        }
-        tarefaRepository.delete(antiga);
-    }*/
 
     public List<Tarefa> obterNaoFinalizadas(){
         return tarefaRepository.findAllByFinalizadoFalse();
